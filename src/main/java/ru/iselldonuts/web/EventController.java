@@ -16,11 +16,15 @@ public class EventController {
     private EventRepository eventRepository;
 
     // curl -d '{"title":"test"}' -H "Content-Type: application/json" -X POST http://localhost:8080/events
-
     @PostMapping
-    public @ResponseBody Event createEvent(@RequestBody EventCreationRequest eventCreationRequest) {
-        Event event = new Event(eventCreationRequest.getTitle());
-
+    public @ResponseBody
+    Event createEvent(@RequestBody EventCreationRequest eventCreationRequest) {
+        Event event = new Event(
+                eventCreationRequest.getTitle(),
+                eventCreationRequest.getDate(),
+                eventCreationRequest.getCreatedAt(),
+                eventCreationRequest.getLocation()
+        );
         eventRepository.save(event);
 
         return event;
