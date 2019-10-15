@@ -23,6 +23,9 @@ public class Event {
     @Column
     private String location;
 
+    @ManyToOne
+    private Place place;
+
     public Event() {
     }
 
