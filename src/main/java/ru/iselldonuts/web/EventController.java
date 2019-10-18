@@ -23,7 +23,7 @@ public class EventController {
                 eventCreationRequest.getTitle(),
                 eventCreationRequest.getDate(),
                 eventCreationRequest.getCreatedAt(),
-                eventCreationRequest.getLocation()
+                eventCreationRequest.getPlace()
         );
         eventRepository.save(event);
 

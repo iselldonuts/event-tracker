@@ -20,9 +20,6 @@ public class Event {
     @Column
     private LocalDate createdAt;
 
-    @Column
-    private String location;
-
     @ManyToOne
     private Place place;
 
@@ -33,11 +30,11 @@ public class Event {
             @NotNull(message = "title can't be empty") String title,
             LocalDate date,
             LocalDate createdAt,
-            String location) {
+            Place place) {
         this.title = title;
         this.date = date;
         this.createdAt = createdAt;
-        this.location = location;
+        this.place = place;
     }
 
     public Long getId() {
@@ -68,11 +65,11 @@ public class Event {
         this.createdAt = createdAt;
     }
 
-    public String getLocation() {
-        return location;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

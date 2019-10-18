@@ -19,8 +19,7 @@ public class Place {
     public Place() {
     }
 
-    public Place(Long id, List<Event> events, String address) {
-        this.id = id;
+    public Place(List<Event> events, String address) {
         this.events = events;
         this.address = address;
     }
@@ -35,6 +34,16 @@ public class Place {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+        event.setPlace(this);
+    }
+
+    public void removeEvent(Event event) {
+        events.remove(event);
+        event.setPlace(null);
     }
 
     public String getAddress() {

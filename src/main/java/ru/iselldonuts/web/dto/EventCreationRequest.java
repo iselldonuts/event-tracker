@@ -1,6 +1,7 @@
 package ru.iselldonuts.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import ru.iselldonuts.entity.Place;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ public class EventCreationRequest {
     @JsonFormat(pattern="dd.MM.yyyy")
     private LocalDate createdAt;
 
-    private String location;
+    private Place place;
 
     public EventCreationRequest() {
     }
@@ -42,11 +43,11 @@ public class EventCreationRequest {
         this.createdAt = createdAt;
     }
 
-    public String getLocation() {
-        return location;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }
