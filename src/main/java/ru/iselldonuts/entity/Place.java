@@ -1,5 +1,7 @@
 package ru.iselldonuts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Place {
     private Long id;
 
     @OneToMany(mappedBy = "place", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Event> events = new ArrayList<>();
 
     @Column
@@ -19,8 +22,7 @@ public class Place {
     public Place() {
     }
 
-    public Place(List<Event> events, String address) {
-        this.events = events;
+    public Place(String address) {
         this.address = address;
     }
 

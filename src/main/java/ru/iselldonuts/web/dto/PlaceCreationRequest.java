@@ -8,7 +8,6 @@ import java.util.List;
 
 public class PlaceCreationRequest {
     private String address;
-    private List<Event> events = new ArrayList<>();
 
     public PlaceCreationRequest() {
     }
@@ -19,13 +18,5 @@ public class PlaceCreationRequest {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
     }
 }

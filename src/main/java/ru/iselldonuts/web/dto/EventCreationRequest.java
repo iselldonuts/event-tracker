@@ -14,7 +14,7 @@ public class EventCreationRequest {
     @JsonFormat(pattern="dd.MM.yyyy")
     private LocalDate createdAt;
 
-    private Place place;
+    private long placeId;
 
     public EventCreationRequest() {
     }
@@ -43,11 +43,7 @@ public class EventCreationRequest {
         this.createdAt = createdAt;
     }
 
-    public Place getPlace() {
-        return place;
-    }
-
-    public void setPlace(Place place) {
-        this.place = place;
+    public long getPlaceId() {
+        return placeId;
     }
 }

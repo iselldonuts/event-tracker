@@ -15,14 +15,11 @@ public class PlaceController {
     @Autowired
     private PlaceRepository placeRepository;
 
-    // curl -d '{"title":"test"}' -H "Content-Type: application/json" -X POST http://localhost:8080/places
+    // curl -d '{"address":"test"}' -H "Content-Type: application/json" -X POST http://localhost:8080/places
     @PostMapping
     public @ResponseBody
     Place createPlace(@RequestBody PlaceCreationRequest placeCreationRequest) {
-        Place place = new Place(
-                placeCreationRequest.getEvents(),
-                placeCreationRequest.getAddress()
-        );
+        Place place = new Place(placeCreationRequest.getAddress());
         placeRepository.save(place);
 
         return place;

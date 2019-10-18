@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.iselldonuts.entity.Event;
 import ru.iselldonuts.repository.EventRepository;
+import ru.iselldonuts.repository.PlaceRepository;
 import ru.iselldonuts.web.dto.EventCreationRequest;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private PlaceRepository placeRepository;
+
     // curl -d '{"title":"test"}' -H "Content-Type: application/json" -X POST http://localhost:8080/events
     @PostMapping
     public @ResponseBody
@@ -23,7 +27,7 @@ public class EventController {
                 eventCreationRequest.getTitle(),
                 eventCreationRequest.getDate(),
                 eventCreationRequest.getCreatedAt(),
-                eventCreationRequest.getPlace()
+                placeRepository.findById(eventCreationRequest.getPlaceId())
         );
         eventRepository.save(event);
 
