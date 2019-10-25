@@ -35,8 +35,13 @@ public class EventController {
     }
 
     // curl -X GET http://localhost:8080/events
+//    @GetMapping
+//    public List<Event> getAllEvents() {
+//        return eventRepository.findAll();
+//    }
+
     @GetMapping
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+    public List<Event> getAllHelloEvents() {
+        return eventRepository.findAllHello();
     }
 }
