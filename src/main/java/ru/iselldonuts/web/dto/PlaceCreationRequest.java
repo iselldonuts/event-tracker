@@ -12,6 +12,10 @@ public class PlaceCreationRequest {
     public PlaceCreationRequest() {
     }
 
+    public PlaceCreationRequest(String address) {
+        this.address = address;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -19,4 +23,6 @@ public class PlaceCreationRequest {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }
