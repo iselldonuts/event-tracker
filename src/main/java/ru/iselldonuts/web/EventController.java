@@ -40,8 +40,13 @@ public class EventController {
 //        return eventRepository.findAll();
 //    }
 
-    @GetMapping
+    @GetMapping("/hello")
     public List<Event> getAllHelloEvents() {
         return eventRepository.findAllHello();
+    }
+
+    @GetMapping()
+    public List<Event> getAllEvents() {
+        return eventRepository.findAll();
     }
 }
