@@ -15,14 +15,17 @@ import ru.iselldonuts.entity.Place;
 import ru.iselldonuts.repository.PlaceRepository;
 import ru.iselldonuts.web.dto.PlaceCreationRequest;
 
+import static org.hamcrest.CoreMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @WebMvcTest(controllers = PlaceController.class)
-@ContextConfiguration(classes = MockConfig.class)
 class PlaceControllerTest {
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -34,37 +37,48 @@ class PlaceControllerTest {
 
     @Test
     public void createTest() throws Exception {
-
-        // Создайте объект который мы будем посылать как json объект
-        PlaceCreationRequest placeCreationRequest
+        PlaceCreationRequest placeCreationRequest1
                 = new PlaceCreationRequest(
-                "Test address"
+                "Test address 1"
+        );
+        PlaceCreationRequest placeCreationRequest2
+                = new PlaceCreationRequest(
+                "Test address 2"
+        );
+        PlaceCreationRequest placeCreationRequest3
+                = new PlaceCreationRequest(
+                "Test address 3"
         );
 
-        // Подготовка mock объекта который позвоялет сделать специальный прокси метод
-        // который может вернуть определенные данные при вызове функции
-        Place place = new Place("Test address");
+//        Place place = new Place("Test address");
 
-
-        when(placeRepository.save(place))
-                .thenReturn(place);
-
-        //Выполнение HTTP запроса
-        ResultActions resultActions = mockMvc.perform(
+        mockMvc.perform(
                 post("/places")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(placeCreationRequest))
+                        .content(mapper.writeValueAsString(placeCreationRequest1))
         ).andExpect(status().isOk());
 
+        mockMvc.perform(
+                post("/places")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(placeCreationRequest2))
+        ).andExpect(status().isOk());
 
-        // Парсинг результата выполнения запроса и конвертация из JSON в POJO
-        MvcResult result = resultActions.andReturn();
-        String contentAsString = result.getResponse().getContentAsString();
+        mockMvc.perform(
+                post("/places")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(placeCreationRequest3))
+        ).andExpect(status().isOk());
+
+//        List<Place> places = placeRepository.findAll();
+
+        MvcResult mvcResult = mockMvc.perform(get("/places"))
+                .andExpect(status().isOk())
+                .andReturn();
 
 
-        Place data = mapper.readValue(contentAsString, Place.class);
+        String contentAsString = mvcResult.getResponse().getContentAsString();
 
-        // Проверка результата
-        assertEquals("Places not equals", place.getAddress(), data.getAddress());
+        assertNotEquals("get response should not be empty", "[]", contentAsString);
     }
 }
