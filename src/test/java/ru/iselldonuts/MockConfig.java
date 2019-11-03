@@ -1,20 +1,20 @@
 package ru.iselldonuts;
 
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import ru.iselldonuts.repository.EventRepository;
-import ru.iselldonuts.repository.PlaceRepository;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.client.RestTemplate;
 
 
-@TestConfiguration
+@Configuration
 @ComponentScan(basePackages = "ru.iselldonuts")
+@EnableJpaRepositories(basePackages = {"ru.iselldonuts.repository"})
 public class MockConfig {
 
-    @MockBean
-    private PlaceRepository placeRepository;
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
-
-    @MockBean
-    private EventRepository eventRepository;
 }

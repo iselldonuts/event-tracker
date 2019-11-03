@@ -11,9 +11,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 @DataJpaTest
 class EventRepositoryIntegrationTest {
@@ -34,24 +33,24 @@ class EventRepositoryIntegrationTest {
         placeRepository.save(place1);
 
         Event event1 = new Event(
-                "Title",
-                LocalDate.parse("01.01.2020", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                LocalDate.parse("02.11.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                place1
+            "Title",
+            LocalDate.parse("01.01.2020", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            LocalDate.parse("02.11.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            place1
         );
 
         Event event2 = new Event(
-                "Hello",
-                LocalDate.parse("15.10.2020", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                LocalDate.parse("01.11.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                place1
+            "Hello",
+            LocalDate.parse("15.10.2020", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            LocalDate.parse("01.11.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            place1
         );
 
         Event event3 = new Event(
-                "Some Text Hello Some Text",
-                LocalDate.parse("03.05.2021", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                LocalDate.parse("30.10.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
-                place1
+            "Some Text Hello Some Text",
+            LocalDate.parse("03.05.2021", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            LocalDate.parse("30.10.2019", DateTimeFormatter.ofPattern("dd.MM.uuuu")),
+            place1
         );
 
         eventRepository.save(event1);

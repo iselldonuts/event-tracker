@@ -17,9 +17,9 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     Event findById(long id);
 
     @Query(
-            value = "SELECT * FROM event JOIN place ON place.id = event.place_id\n" +
-                    "WHERE REGEXP_LIKE(title, '[hH]ello')",
-            nativeQuery = true
+        value = "SELECT * FROM event JOIN place ON place.id = event.place_id\n" +
+            "WHERE REGEXP_LIKE(title, '[hH]ello')",
+        nativeQuery = true
     )
     List<Event> findAllHello();
 }

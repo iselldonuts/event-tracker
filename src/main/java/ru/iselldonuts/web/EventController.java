@@ -24,10 +24,10 @@ public class EventController {
     public @ResponseBody
     Event createEvent(@RequestBody EventCreationRequest eventCreationRequest) {
         Event event = new Event(
-                eventCreationRequest.getTitle(),
-                eventCreationRequest.getDate(),
-                eventCreationRequest.getCreatedAt(),
-                placeRepository.findById(eventCreationRequest.getPlaceId())
+            eventCreationRequest.getTitle(),
+            eventCreationRequest.getDate(),
+            eventCreationRequest.getCreatedAt(),
+            placeRepository.findById(eventCreationRequest.getPlaceId())
         );
         eventRepository.save(event);
 

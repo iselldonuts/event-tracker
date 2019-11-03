@@ -27,10 +27,10 @@ public class Event {
     }
 
     public Event(
-            @NotNull(message = "title can't be empty") String title,
-            LocalDate date,
-            LocalDate createdAt,
-            Place place) {
+        @NotNull(message = "title can't be empty") String title,
+        LocalDate date,
+        LocalDate createdAt,
+        Place place) {
         this.title = title;
         this.date = date;
         this.createdAt = createdAt;
